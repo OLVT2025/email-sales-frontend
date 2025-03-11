@@ -44,6 +44,8 @@ const EmailDashboard = () => {
         try {
             const response = await fetch(`https://email-sales-backend.onrender.com/campaign-metrics/${id}`);
             setEmailRecords([])
+            setCampaignStats()
+            setIndustryData()
             const data = await response.json();
             if (!data.error) {
                 setEmailMetrics(data.metrics);
