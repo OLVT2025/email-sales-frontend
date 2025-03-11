@@ -11,11 +11,13 @@ export const CardHeader = ({ className, ...props }) => (
   <div className={`flex flex-col space-y-1.5 p-6 ${className}`} {...props} />
 );
 
-export const CardTitle = ({ className, ...props }) => (
+export const CardTitle = ({ className = "", children, ...props }) => (
   <h3
     className={`text-lg font-semibold leading-none tracking-tight ${className}`}
     {...props}
-  />
+  >
+    {children || "Default Title"}  {/* Ensure content exists */}
+  </h3>
 );
 
 export const CardContent = ({ className, ...props }) => (
