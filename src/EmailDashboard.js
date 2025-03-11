@@ -44,8 +44,13 @@ const EmailDashboard = () => {
         try {
             const response = await fetch(`https://email-sales-backend.onrender.com/campaign-metrics/${id}`);
             setEmailRecords([])
-            setCampaignStats()
-            setIndustryData()
+            setCampaignStats({
+                totalEmails: 0,
+                successfulEmails: 0,
+                failedEmails: 0,
+                industries: {},
+            })
+            setIndustryData([])
             const data = await response.json();
             if (!data.error) {
                 setEmailMetrics(data.metrics);
@@ -292,7 +297,7 @@ const EmailDashboard = () => {
                                     <div className="stat-content">
                                         <Mail className="stat-icon total" />
                                         <div className="stat-info">
-                                            <h3>{campaignStats.totalEmails}</h3>
+                                            <h3>{campaignStats?.totalEmails}</h3>
                                             <p>Total Emails</p>
                                         </div>
                                     </div>
