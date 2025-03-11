@@ -43,6 +43,7 @@ const EmailDashboard = () => {
     const fetchMetrics = async (id) => {
         try {
             const response = await fetch(`https://email-sales-backend.onrender.com/campaign-metrics/${id}`);
+            setEmailRecords([])
             const data = await response.json();
             if (!data.error) {
                 setEmailMetrics(data.metrics);
@@ -106,40 +107,40 @@ const EmailDashboard = () => {
             if (startData.campaign_id) {
                 setCampaignId(startData.campaign_id);
                 fetchMetrics(startData.campaign_id);
-                const fetchResults = async () => {
-                    try {
-                        const response = await fetch(
-                            `https://email-sales-backend.onrender.com/campaign-results/?campaign_id=${startData.campaign_id}`
-                        );
-                        if (response.ok) {
-                            const data = await response.json();
+                // const fetchResults = async () => {
+                //     try {
+                //         const response = await fetch(
+                //             `https://email-sales-backend.onrender.com/campaign-results/?campaign_id=${startData.campaign_id}`
+                //         );
+                //         if (response.ok) {
+                //             const data = await response.json();
 
-                            if (data.status === "Processing") {
-                                setTimeout(fetchResults, 10000);
-                            } else {
-                                setCampaignStats(data);
-                                setIndustryData(
-                                    Object.entries(data.industries).map(([industry, count]) => ({
-                                        industry,
-                                        emails: count,
-                                    }))
-                                );
-                                alert(
-                                    `Campaign Completed!\nSuccess: ${data.successfulEmails}\nFailed: ${data.failedEmails}`
-                                );
-                            }
-                        } else if (response.status === 404) {
-                            setResultsLoadingError(true);
-                            console.error("Campaign results not found (404)");
-                        } else {
-                            setResultsLoadingError(true);
-                            console.error("Error fetching results (non-404):", response.status, response.statusText);
-                        }
-                    } catch (error) {
-                        setResultsLoadingError(true);
-                        console.error("Error fetching campaign results:", error);
-                    }
-                };
+                //             if (data.status === "Processing") {
+                //                 setTimeout(fetchResults, 10000);
+                //             } else {
+                //                 setCampaignStats(data);
+                //                 setIndustryData(
+                //                     Object.entries(data.industries).map(([industry, count]) => ({
+                //                         industry,
+                //                         emails: count,
+                //                     }))
+                //                 );
+                //                 alert(
+                //                     `Campaign Completed!\nSuccess: ${data.successfulEmails}\nFailed: ${data.failedEmails}`
+                //                 );
+                //             }
+                //         } else if (response.status === 404) {
+                //             setResultsLoadingError(true);
+                //             console.error("Campaign results not found (404)");
+                //         } else {
+                //             setResultsLoadingError(true);
+                //             console.error("Error fetching results (non-404):", response.status, response.statusText);
+                //         }
+                //     } catch (error) {
+                //         setResultsLoadingError(true);
+                //         console.error("Error fetching campaign results:", error);
+                //     }
+                // };
                 // fetchResults();
             }
 
@@ -194,7 +195,6 @@ const EmailDashboard = () => {
                                 </thead>
                                 <tbody>
                                     {campaigns?.map((campaign, index) => (
-                                      console.log(campaign,'campaigndsdsdsdsd'),
                                         <tr key={index}>
                                             <td>{campaign.campaign_id}</td>
                                             <td>{campaign.total_processed}</td>
