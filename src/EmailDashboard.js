@@ -176,6 +176,7 @@ const EmailDashboard = () => {
                     <th>Bounce Rate</th>
                     <th>Reply Rate</th>
                     <th>Unsubscribe Rate</th>
+                    <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -189,6 +190,16 @@ const EmailDashboard = () => {
                       <td>{campaign.metrics.bounce_rate}%</td>
                       <td>{campaign.metrics.reply_rate}%</td>
                       <td>{campaign.metrics.unsubscribe_rate}%</td>
+                      <td>
+                        {new Date(campaign.start_time).toLocaleString("en-US", {
+                          month: "long",
+                          day: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        })}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
