@@ -545,7 +545,7 @@ const EmailDashboard = () => {
     setCampaignDetailsLoading(true);
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/campaign-details/${id}`
+        `https://email-sales-backend.onrender.com/campaign-details/${id}`
       );
       const data = await response.json();
       if (!data.error) {
