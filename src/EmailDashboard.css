@@ -612,3 +612,47 @@ td {
   margin-bottom: 15px;
   font-size: 1.1rem;
 }
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  padding: 0;
+}
+
+.pagination-page, .pagination-btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #4F46E5;
+  color: #4F46E5;
+  font-size: 14px;
+  transition: background 0.3s ease-in-out;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-page:hover, .pagination-btn:hover {
+  background-color: #4F46E5;
+  color: white;
+}
+
+.pagination .active {
+  background-color: #4F46E5;
+  color: white;
+  font-weight: bold;
+}
+
+.pagination-break {
+  padding: 8px 12px;
+  font-size: 14px;
+}
